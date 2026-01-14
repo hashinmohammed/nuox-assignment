@@ -5,7 +5,7 @@ import { validateShareholderForm } from "@/utils/validators";
 // GET /api/shareholders/[id] - Get shareholder by ID
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const shareholder = db.shareholders.getById(id);
 
     if (!shareholder) {
@@ -28,7 +28,7 @@ export async function GET(request, { params }) {
 // PUT /api/shareholders/[id] - Update shareholder
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     // Validate input
@@ -63,7 +63,7 @@ export async function PUT(request, { params }) {
 // DELETE /api/shareholders/[id] - Delete shareholder
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // Check if shareholder has shares
     const shares = db.shares.getByShareholderId(id);

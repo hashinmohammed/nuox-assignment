@@ -5,7 +5,7 @@ import { validatePaymentAmount } from "@/utils/validators";
 // POST /api/installments/[id]/payment - Record payment for installment
 export async function POST(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     const { amount, paymentDate } = body;

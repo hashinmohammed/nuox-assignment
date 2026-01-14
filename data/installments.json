@@ -101,10 +101,10 @@
     "dueDate": "2024-12-01T00:00:00.000Z",
     "installmentAmount": 4500,
     "installmentNumber": 4,
-    "status": "pending",
-    "paidAmount": 0,
-    "balanceAmount": 4500,
-    "paidDate": null,
+    "status": "partial",
+    "paidAmount": 3000,
+    "balanceAmount": 1500,
+    "paidDate": "2026-01-14",
     "createdAt": "2024-02-10T14:25:00.000Z"
   },
   {
@@ -125,10 +125,10 @@
     "dueDate": "2024-10-01T00:00:00.000Z",
     "installmentAmount": 12000,
     "installmentNumber": 2,
-    "status": "pending",
-    "paidAmount": 0,
-    "balanceAmount": 12000,
-    "paidDate": null,
+    "status": "partial",
+    "paidAmount": 5000,
+    "balanceAmount": 7000,
+    "paidDate": "2026-01-14T00:00:00.000Z",
     "createdAt": "2024-03-05T09:20:00.000Z"
   },
   {
