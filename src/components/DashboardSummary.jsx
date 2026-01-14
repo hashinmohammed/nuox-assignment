@@ -21,8 +21,8 @@ export default function DashboardSummary() {
 
   const stats = [
     {
-      title: "Total Monthly Collected Amount",
-      value: formatCurrency(summary.monthlyCollected),
+      title: "Total Paid Amount",
+      value: formatCurrency(summary.totalPaid),
       bgColor: "bg-blue-50",
       textColor: "text-blue-700",
     },
