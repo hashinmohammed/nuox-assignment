@@ -68,7 +68,7 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
         Filter Installments
       </h3>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
           {/* Country Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
