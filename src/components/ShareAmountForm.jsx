@@ -126,7 +126,7 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
   return (
     <Card title="Share Amount Details">
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Duration - Year <span className="text-red-500">*</span>
@@ -273,11 +273,20 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
           </div>
         )}
 
-        <div className="flex gap-3 mt-6">
-          <Button type="submit" disabled={loading || preview.length === 0}>
+        <div className="flex flex-col sm:flex-row gap-3 mt-6">
+          <Button
+            type="submit"
+            disabled={loading || preview.length === 0}
+            className="w-full sm:w-auto"
+          >
             {loading ? "Creating..." : "Create"}
           </Button>
-          <Button type="button" variant="secondary" onClick={handleReset}>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handleReset}
+            className="w-full sm:w-auto"
+          >
             Reset
           </Button>
         </div>

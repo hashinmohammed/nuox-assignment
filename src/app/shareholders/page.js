@@ -82,17 +82,24 @@ export default function ShareholdersPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
+            <h1 className="text-lg sm:text-2xl font-bold text-gray-900">
               All Shareholders
             </h1>
-            <div className="flex gap-3">
-              <Link href="/">
-                <Button variant="secondary">← Dashboard</Button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+              <Link href="/" className="w-full sm:w-auto">
+                <Button
+                  variant="secondary"
+                  className="w-full sm:w-auto text-sm"
+                >
+                  ← Dashboard
+                </Button>
               </Link>
-              <Link href="/shareholders/new">
-                <Button>Add Shareholder</Button>
+              <Link href="/shareholders/new" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto text-sm">
+                  Add Shareholder
+                </Button>
               </Link>
             </div>
           </div>

@@ -54,11 +54,15 @@ export default function DashboardSummary() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
       {stats.map((stat, index) => (
         <Card key={index} className={stat.bgColor}>
-          <p className="text-sm font-medium text-gray-600 mb-1">{stat.title}</p>
-          <p className={`text-3xl font-bold ${stat.textColor}`}>{stat.value}</p>
+          <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">
+            {stat.title}
+          </p>
+          <p className={`text-2xl sm:text-3xl font-bold ${stat.textColor}`}>
+            {stat.value}
+          </p>
         </Card>
       ))}
     </div>

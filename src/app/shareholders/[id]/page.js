@@ -61,20 +61,25 @@ export default function ShareholderDetailPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            <div className="flex-1">
               <Link href="/shareholders">
-                <Button variant="secondary" className="mb-2">
+                <Button variant="secondary" className="mb-2 text-sm">
                   ← Back to Shareholders
                 </Button>
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
                 {shareholder.name}
               </h1>
-              <p className="text-gray-600">{shareholder.email}</p>
+              <p className="text-sm sm:text-base text-gray-600">
+                {shareholder.email}
+              </p>
             </div>
-            <Button onClick={() => setShowAddShare(!showAddShare)}>
+            <Button
+              onClick={() => setShowAddShare(!showAddShare)}
+              className="w-full sm:w-auto"
+            >
               {showAddShare ? "Cancel" : "Add New Share"}
             </Button>
           </div>
@@ -131,7 +136,7 @@ export default function ShareholderDetailPage() {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {shareholderShares.map((share) => (
                 <div
                   key={share.id}

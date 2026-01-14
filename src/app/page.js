@@ -10,17 +10,21 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
+            <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900">
               Shareholder Management System
             </h1>
-            <div className="flex gap-3">
-              <Link href="/shareholders/new">
-                <Button>Add Shareholder</Button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+              <Link href="/shareholders/new" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto text-sm">
+                  Add Shareholder
+                </Button>
               </Link>
-              <Link href="/shareholders">
-                <Button variant="outline">View All Shareholders</Button>
+              <Link href="/shareholders" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto text-sm">
+                  View All Shareholders
+                </Button>
               </Link>
             </div>
           </div>
