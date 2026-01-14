@@ -73,12 +73,10 @@ const writeData = (filename, data) => {
 
 // Generic CRUD operations
 export const db = {
-  // Shareholders
   shareholders: {
     getAll: (page = null, limit = 10, filters = {}) => {
       let data = readData("shareholders.json");
 
-      // Apply Search Filter (Name or Email)
       if (filters.search) {
         const searchTerm = filters.search.toLowerCase();
         data = data.filter(

@@ -132,7 +132,6 @@ export default function InstallmentFilters({
             </div>
           )}
 
-          {/* Month Filter */}
           {!hideDates && (
             <div className="lg:w-40">
               <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
@@ -152,7 +151,6 @@ export default function InstallmentFilters({
             </div>
           )}
 
-          {/* Year Filter */}
           {!hideDates && (
             <div className="lg:w-32">
               <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
@@ -173,7 +171,6 @@ export default function InstallmentFilters({
           )}
         </div>
 
-        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           <Button
             type="submit"

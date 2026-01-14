@@ -71,6 +71,11 @@ export async function GET(request) {
           const dueDate = new Date(inst.dueDate);
           return dueDate.getMonth() + 1 === parseInt(month);
         });
+      } else if (year) {
+        enrichedInstallments = enrichedInstallments.filter((inst) => {
+          const dueDate = new Date(inst.dueDate);
+          return dueDate.getFullYear() === parseInt(year);
+        });
       }
 
       if (status) {
