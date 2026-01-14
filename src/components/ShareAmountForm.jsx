@@ -230,39 +230,39 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
         {/* Preview Section */}
         {preview.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-3">
+            <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
               Installment Due Date and Share Amount Details
             </h3>
-            <div className="overflow-x-auto max-h-96 overflow-y-auto border rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50 sticky top-0">
+            <div className="overflow-x-auto max-h-96 overflow-y-auto border rounded-lg dark:border-gray-700">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800 sticky top-0">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                       Due Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                       Installment Amount
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                   {preview.map((inst, index) => (
                     <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
                         {formatDate(inst.dueDate)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
                         {formatCurrency(inst.installmentAmount)}
                       </td>
                     </tr>
                   ))}
-                  <tr className="bg-gray-50 font-semibold">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <tr className="bg-gray-50 dark:bg-gray-800 font-semibold">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                       Total Installment Amount - {formatCurrency(totalAmount)}{" "}
                       (Duration {formData.duration} Year
                       {formData.duration > 1 ? "s" : ""})
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                       {formatCurrency(totalAmount)}
                     </td>
                   </tr>
@@ -273,7 +273,7 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
         )}
 
         {errors.submit && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm dark:bg-red-900/30 dark:border-red-800 dark:text-red-300">
             {errors.submit}
           </div>
         )}

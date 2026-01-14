@@ -62,7 +62,9 @@ export default function ShareholdersPage() {
       header: "Name",
       accessor: "name",
       render: (row) => (
-        <span className="font-medium text-gray-900">{row.name}</span>
+        <span className="font-medium text-gray-900 dark:text-white">
+          {row.name}
+        </span>
       ),
     },
     { header: "Email", accessor: "email" },
@@ -79,12 +81,12 @@ export default function ShareholdersPage() {
   const showPagination = searchResults === null && pagination;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-white shadow-sm dark:bg-gray-900 dark:border-b dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
-            <h1 className="text-lg sm:text-2xl font-bold text-gray-900">
+            <h1 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">
               All Shareholders
             </h1>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
@@ -118,8 +120,8 @@ export default function ShareholdersPage() {
           />
 
           {searchResults !== null && (
-            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm text-blue-900">
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg dark:bg-blue-900/20 dark:border-blue-800">
+              <p className="text-sm text-blue-900 dark:text-blue-300">
                 Found {searchResults.length} result
                 {searchResults.length !== 1 ? "s" : ""}
               </p>

@@ -59,9 +59,9 @@ export default function ShareholderDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-white shadow-sm dark:bg-gray-900 dark:border-b dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div className="flex-1">
@@ -74,10 +74,10 @@ export default function ShareholderDetailPage() {
                   Back to Shareholders
                 </Button>
               </Link>
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                 {shareholder.name}
               </h1>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 {shareholder.email}
               </p>
             </div>
@@ -152,59 +152,107 @@ export default function ShareholderDetailPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {shareholderShares.map((share) => (
-                <div
-                  key={share.id}
-                  className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-                  onClick={() =>
-                    router.push(
-                      `/shareholders/${shareholderId}/shares/${share.id}`
-                    )
+              {shareholderShares.map((share) => {
+                const getBorderColor = (type) => {
+                  switch (type.toLowerCase()) {
+                    case "monthly":
+                      return "border-blue-400 hover:border-blue-500 dark:border-blue-500/50 dark:hover:border-blue-400";
+                    case "quarterly":
+                      return "border-green-400 hover:border-green-500 dark:border-green-500/50 dark:hover:border-green-400";
+                    case "yearly":
+                      return "border-orange-400 hover:border-orange-500 dark:border-orange-500/50 dark:hover:border-orange-400";
+                    case "custom":
+                      return "border-purple-400 hover:border-purple-500 dark:border-purple-500/50 dark:hover:border-purple-400";
+                    default:
+                      return "border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600";
                   }
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-semibold text-lg">
-                      {share.installmentType.charAt(0).toUpperCase() +
-                        share.installmentType.slice(1)}{" "}
-                      Plan
-                    </h3>
-                    <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                      {share.duration} Year{share.duration > 1 ? "s" : ""}
-                    </span>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Annual Amount:</span>
-                      <span className="font-medium">
-                        {formatCurrency(share.annualAmount)}
+                };
+
+                const getBadgeColor = (type) => {
+                  switch (type.toLowerCase()) {
+                    case "monthly":
+                      return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300";
+                    case "quarterly":
+                      return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300";
+                    case "yearly":
+                      return "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300";
+                    case "custom":
+                      return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300";
+                    default:
+                      return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300";
+                  }
+                };
+
+                return (
+                  <div
+                    key={share.id}
+                    className={`border-2 rounded-lg p-4 hover:shadow-md transition-all cursor-pointer bg-white dark:bg-gray-900 ${getBorderColor(
+                      share.installmentType
+                    )}`}
+                    onClick={() =>
+                      router.push(
+                        `/shareholders/${shareholderId}/shares/${share.id}`
+                      )
+                    }
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">
+                        {share.installmentType.charAt(0).toUpperCase() +
+                          share.installmentType.slice(1)}{" "}
+                        Plan
+                      </h3>
+                      <span
+                        className={`text-xs px-2 py-1 rounded ${getBadgeColor(
+                          share.installmentType
+                        )}`}
+                      >
+                        {share.duration} Year{share.duration > 1 ? "s" : ""}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Total Amount:</span>
-                      <span className="font-medium">
-                        {formatCurrency(share.totalAmount)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Start Date:</span>
-                      <span className="font-medium">
-                        {formatDate(share.startDate)}
-                      </span>
-                    </div>
-                    {share.paymentMode && (
+                    <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Payment Mode:</span>
-                        <span className="font-medium">{share.paymentMode}</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Annual Amount:
+                        </span>
+                        <span className="font-medium text-gray-900 dark:text-gray-200">
+                          {formatCurrency(share.annualAmount)}
+                        </span>
                       </div>
-                    )}
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Total Amount:
+                        </span>
+                        <span className="font-medium text-gray-900 dark:text-gray-200">
+                          {formatCurrency(share.totalAmount)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Start Date:
+                        </span>
+                        <span className="font-medium text-gray-900 dark:text-gray-200">
+                          {formatDate(share.startDate)}
+                        </span>
+                      </div>
+                      {share.paymentMode && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Payment Mode:
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-gray-200">
+                            {share.paymentMode}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-800">
+                      <Button variant="outline" className="w-full text-sm">
+                        View Details →
+                      </Button>
+                    </div>
                   </div>
-                  <div className="mt-4 pt-3 border-t">
-                    <Button variant="outline" className="w-full text-sm">
-                      View Details →
-                    </Button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </Card>

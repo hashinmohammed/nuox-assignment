@@ -24,22 +24,22 @@ export default function DashboardSummary() {
     {
       title: "Total Paid Amount",
       value: formatCurrency(summary.totalPaid),
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-700",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
+      textColor: "text-blue-700 dark:text-blue-400",
       icon: DollarSign,
     },
     {
       title: "Total Expected Amount",
       value: formatCurrency(summary.totalExpected),
-      bgColor: "bg-green-50",
-      textColor: "text-green-700",
+      bgColor: "bg-green-50 dark:bg-green-900/20",
+      textColor: "text-green-700 dark:text-green-400",
       icon: TrendingUp,
     },
     {
       title: "Due Amount",
       value: formatCurrency(summary.totalDue),
-      bgColor: "bg-orange-50",
-      textColor: "text-orange-700",
+      bgColor: "bg-orange-50 dark:bg-orange-900/20",
+      textColor: "text-orange-700 dark:text-orange-400",
       icon: AlertCircle,
     },
   ];
@@ -64,7 +64,7 @@ export default function DashboardSummary() {
         return (
           <Card key={index} className={stat.bgColor}>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs sm:text-sm font-medium text-gray-600">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
                 {stat.title}
               </p>
               <Icon className={`w-5 h-5 ${stat.textColor}`} />

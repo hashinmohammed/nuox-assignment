@@ -50,9 +50,10 @@ export default function ShareholderSummaryTable() {
 
   const getStatusBadge = (status) => {
     const styles = {
-      paid: "bg-green-100 text-green-800",
-      partial: "bg-yellow-100 text-yellow-800",
-      pending: "bg-red-100 text-red-800",
+      paid: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+      partial:
+        "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+      pending: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
     };
 
     return (
@@ -75,7 +76,9 @@ export default function ShareholderSummaryTable() {
       header: "Name",
       accessor: "shareholderName",
       render: (row) => (
-        <span className="font-medium text-gray-900">{row.shareholderName}</span>
+        <span className="font-medium text-gray-900 dark:text-white">
+          {row.shareholderName}
+        </span>
       ),
     },
     {
@@ -105,8 +108,8 @@ export default function ShareholderSummaryTable() {
         <span
           className={
             row.balanceAmount > 0
-              ? "text-red-600 font-semibold"
-              : "text-green-600"
+              ? "text-red-600 font-semibold dark:text-red-400"
+              : "text-green-600 dark:text-green-400"
           }
         >
           {formatCurrency(row.balanceAmount)}

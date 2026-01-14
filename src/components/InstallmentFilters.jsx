@@ -65,20 +65,20 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
 
   return (
     <Card className="mb-6">
-      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 dark:text-white">
         Filter Installments
       </h3>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
           {/* Country Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Country
             </label>
             <select
               value={filters.country}
               onChange={(e) => handleChange("country", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             >
               <option value="">All Countries</option>
               {countries.map((country) => (
@@ -91,7 +91,7 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
 
           {/* Search User */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Search User
             </label>
             <input
@@ -99,19 +99,19 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
               value={filters.search}
               onChange={(e) => handleChange("search", e.target.value)}
               placeholder="Search by name..."
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             />
           </div>
 
           {/* Status Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Status
             </label>
             <select
               value={filters.status}
               onChange={(e) => handleChange("status", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             >
               {statuses.map((status) => (
                 <option key={status.value} value={status.value}>
@@ -123,13 +123,13 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
 
           {/* Month Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Month
             </label>
             <select
               value={filters.month}
               onChange={(e) => handleChange("month", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             >
               {months.map((month) => (
                 <option key={month.value} value={month.value}>
@@ -141,13 +141,13 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
 
           {/* Year Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Year
             </label>
             <select
               value={filters.year}
               onChange={(e) => handleChange("year", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             >
               {years.map((year) => (
                 <option key={year.value} value={year.value}>

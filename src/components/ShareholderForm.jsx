@@ -102,7 +102,7 @@ export default function ShareholderForm({ onSuccess }) {
         />
 
         {errors.submit && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm dark:bg-red-900/30 dark:border-red-800 dark:text-red-300">
             {errors.submit}
           </div>
         )}

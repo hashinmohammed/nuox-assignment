@@ -25,18 +25,18 @@ export default function Modal({
       {/* Modal */}
       <div className="flex min-h-screen items-center justify-center p-2 sm:p-4">
         <div
-          className={`relative bg-white rounded-lg shadow-xl ${sizes[size]} w-full mx-2 sm:mx-0`}
+          className={`relative bg-white dark:bg-gray-900 rounded-lg shadow-xl ${sizes[size]} w-full mx-2 sm:mx-0`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           {title && (
-            <div className="border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 pr-8">
+            <div className="border-b border-gray-200 dark:border-gray-800 px-4 sm:px-6 py-3 sm:py-4">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white pr-8">
                 {title}
               </h2>
               <button
                 onClick={onClose}
-                className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-400 hover:text-gray-600"
+                className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
               >
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6"
@@ -56,7 +56,9 @@ export default function Modal({
           )}
 
           {/* Content */}
-          <div className="px-4 sm:px-6 py-3 sm:py-4">{children}</div>
+          <div className="px-4 sm:px-6 py-3 sm:py-4 dark:text-gray-200">
+            {children}
+          </div>
         </div>
       </div>
     </div>
