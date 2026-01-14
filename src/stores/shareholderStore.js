@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { shareholderService } from "@/services/shareholderService";
 
 export const useShareholderStore = create((set, get) => ({
   // State
@@ -11,16 +12,11 @@ export const useShareholderStore = create((set, get) => ({
   fetchShareholders: async (page = 1, limit = 10, filters = {}) => {
     set({ loading: true, error: null });
     try {
-      const params = new URLSearchParams({
+      const data = await shareholderService.getShareholders(
         page,
         limit,
-        ...(filters.search && { search: filters.search }),
-        ...(filters.country && { country: filters.country }),
-      });
-
-      const response = await fetch(`/api/shareholders?${params}`);
-      if (!response.ok) throw new Error("Failed to fetch shareholders");
-      const data = await response.json();
+        filters
+      );
       set({
         shareholders: data.shareholders,
         pagination: data.pagination,
@@ -34,18 +30,7 @@ export const useShareholderStore = create((set, get) => ({
   addShareholder: async (shareholderData) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch("/api/shareholders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(shareholderData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to create shareholder");
-      }
-
-      const data = await response.json();
+      const data = await shareholderService.createShareholder(shareholderData);
       set((state) => ({
         shareholders: [...state.shareholders, data.shareholder],
         loading: false,
@@ -60,15 +45,10 @@ export const useShareholderStore = create((set, get) => ({
   updateShareholder: async (id, shareholderData) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`/api/shareholders/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(shareholderData),
-      });
-
-      if (!response.ok) throw new Error("Failed to update shareholder");
-
-      const data = await response.json();
+      const data = await shareholderService.updateShareholder(
+        id,
+        shareholderData
+      );
       set((state) => ({
         shareholders: state.shareholders.map((sh) =>
           sh.id === id ? data.shareholder : sh
@@ -85,15 +65,7 @@ export const useShareholderStore = create((set, get) => ({
   deleteShareholder: async (id) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`/api/shareholders/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to delete shareholder");
-      }
-
+      await shareholderService.deleteShareholder(id);
       set((state) => ({
         shareholders: state.shareholders.filter((sh) => sh.id !== id),
         loading: false,
@@ -107,9 +79,7 @@ export const useShareholderStore = create((set, get) => ({
   fetchShareholderById: async (id) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`/api/shareholders/${id}`);
-      if (!response.ok) throw new Error("Failed to fetch shareholder details");
-      const data = await response.json();
+      const data = await shareholderService.getShareholderById(id);
 
       // Update local state if needed, or just return the data
       // We'll update the list if the item exists, or add it if it's missing but valid
@@ -137,11 +107,7 @@ export const useShareholderStore = create((set, get) => ({
   searchByEmail: async (email) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(
-        `/api/shareholders/search?email=${encodeURIComponent(email)}`
-      );
-      if (!response.ok) throw new Error("Failed to search shareholders");
-      const data = await response.json();
+      const data = await shareholderService.searchByEmail(email);
       return data.shareholders;
     } catch (error) {
       set({ error: error.message, loading: false });
