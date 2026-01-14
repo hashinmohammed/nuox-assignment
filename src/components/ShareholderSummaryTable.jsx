@@ -5,22 +5,40 @@ import { useRouter } from "next/navigation";
 import Card from "./ui/Card";
 import Table from "./ui/Table";
 import Pagination from "./ui/Pagination";
+import InstallmentFilters from "./InstallmentFilters";
 import { useSummaryStore } from "@/stores/summaryStore";
+import { useShareholderStore } from "@/stores/shareholderStore";
 import { formatDate } from "@/utils/dateUtils";
 
 export default function ShareholderSummaryTable() {
   const router = useRouter();
   const { installments, pagination, loading, fetchInstallments } =
     useSummaryStore();
+  const { shareholders, fetchShareholders } = useShareholderStore();
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
-    fetchInstallments(currentPage);
-  }, [currentPage]);
+    fetchShareholders();
+  }, []);
+
+  useEffect(() => {
+    fetchInstallments(currentPage, 10, filters);
+  }, [currentPage, filters]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
+
+  // Extract unique countries from shareholders
+  const countries = [...new Set(shareholders.map((sh) => sh.country))].filter(
+    Boolean
+  );
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-IN", {
@@ -48,17 +66,16 @@ export default function ShareholderSummaryTable() {
     );
   };
 
+  const handleRowClick = (row) => {
+    router.push(`/shareholders/${row.shareholderId}`);
+  };
+
   const columns = [
     {
       header: "Name",
       accessor: "shareholderName",
       render: (row) => (
-        <button
-          onClick={() => router.push(`/shareholders/${row.shareholderId}`)}
-          className="text-blue-600 hover:text-blue-800 font-medium"
-        >
-          {row.shareholderName}
-        </button>
+        <span className="font-medium text-gray-900">{row.shareholderName}</span>
       ),
     },
     {
@@ -104,15 +121,28 @@ export default function ShareholderSummaryTable() {
   ];
 
   return (
-    <Card title="Installment Due Amount Details">
-      {loading ? (
-        <div className="text-center py-8 text-gray-500">Loading...</div>
-      ) : (
-        <>
-          <Table columns={columns} data={installments} />
-          <Pagination pagination={pagination} onPageChange={handlePageChange} />
-        </>
-      )}
-    </Card>
+    <>
+      <InstallmentFilters
+        onFilterChange={handleFilterChange}
+        countries={countries}
+      />
+      <Card title="Installment Due Amount Details">
+        {loading ? (
+          <div className="text-center py-8 text-gray-500">Loading...</div>
+        ) : (
+          <>
+            <Table
+              columns={columns}
+              data={installments}
+              onRowClick={handleRowClick}
+            />
+            <Pagination
+              pagination={pagination}
+              onPageChange={handlePageChange}
+            />
+          </>
+        )}
+      </Card>
+    </>
   );
 }

@@ -31,7 +31,9 @@ export default function Table({ columns, data, onRowClick = null }) {
                   key={rowIndex}
                   onClick={() => onRowClick && onRowClick(row)}
                   className={
-                    onRowClick ? "hover:bg-gray-50 cursor-pointer" : ""
+                    onRowClick
+                      ? "hover:bg-blue-50 cursor-pointer transition-colors duration-150"
+                      : ""
                   }
                 >
                   {columns.map((column, colIndex) => (

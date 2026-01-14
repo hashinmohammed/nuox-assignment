@@ -20,8 +20,15 @@ export async function GET(request) {
       const shareholders = db.shareholders.getAll();
       const shares = db.shares.getAll();
 
+      // Get filter parameters
+      const country = searchParams.get("country");
+      const search = searchParams.get("search");
+      const month = searchParams.get("month");
+      const year = searchParams.get("year");
+      const status = searchParams.get("status");
+
       // Enrich installments with shareholder data
-      const enrichedInstallments = allInstallments.map((inst) => {
+      let enrichedInstallments = allInstallments.map((inst) => {
         const share = shares.find((s) => s.id === inst.shareId);
         const shareholder = share
           ? shareholders.find((sh) => sh.id === share.shareholderId)
@@ -32,8 +39,45 @@ export async function GET(request) {
           shareholderName: shareholder?.name || "Unknown",
           shareholderEmail: shareholder?.email || "Unknown",
           shareholderId: shareholder?.id,
+          shareholderCountry: shareholder?.country || "",
         };
       });
+
+      // Apply filters
+      if (country) {
+        enrichedInstallments = enrichedInstallments.filter(
+          (inst) =>
+            inst.shareholderCountry.toLowerCase() === country.toLowerCase()
+        );
+      }
+
+      if (search) {
+        const searchLower = search.toLowerCase();
+        enrichedInstallments = enrichedInstallments.filter((inst) =>
+          inst.shareholderName.toLowerCase().includes(searchLower)
+        );
+      }
+
+      if (month && year) {
+        enrichedInstallments = enrichedInstallments.filter((inst) => {
+          const dueDate = new Date(inst.dueDate);
+          return (
+            dueDate.getMonth() + 1 === parseInt(month) &&
+            dueDate.getFullYear() === parseInt(year)
+          );
+        });
+      } else if (month) {
+        enrichedInstallments = enrichedInstallments.filter((inst) => {
+          const dueDate = new Date(inst.dueDate);
+          return dueDate.getMonth() + 1 === parseInt(month);
+        });
+      }
+
+      if (status) {
+        enrichedInstallments = enrichedInstallments.filter(
+          (inst) => inst.status.toLowerCase() === status.toLowerCase()
+        );
+      }
 
       // Apply pagination if requested
       if (page) {
