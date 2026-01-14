@@ -31,7 +31,7 @@ export default function ShareDetailPage() {
       }
     };
     loadData();
-  }, [shareId]);
+  }, [shareId, fetchShareWithInstallments]);
 
   const share = shares.find((s) => s.id === shareId);
   const shareInstallments = installments.filter((i) => i.shareId === shareId);

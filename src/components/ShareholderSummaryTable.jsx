@@ -20,11 +20,11 @@ export default function ShareholderSummaryTable() {
 
   useEffect(() => {
     fetchShareholders();
-  }, []);
+  }, [fetchShareholders]);
 
   useEffect(() => {
     fetchInstallments(currentPage, 10, filters);
-  }, [currentPage, filters]);
+  }, [currentPage, filters, fetchInstallments]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

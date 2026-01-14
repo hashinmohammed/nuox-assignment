@@ -40,7 +40,7 @@ export default function ShareholdersPage() {
 
   useEffect(() => {
     fetchShareholders(currentPage, 10, filters);
-  }, [currentPage, filters]); // Re-fetch when page or filters change
+  }, [currentPage, filters, fetchShareholders]); // Re-fetch when page or filters change
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

@@ -37,7 +37,7 @@ export function useShareholderData(shareholderId) {
       mounted = false;
     };
     // Including dependency array as required
-  }, [shareholderId, fetchShareholderById, fetchShares]);
+  }, [shareholderId, fetchShareholderById, fetchShares, shareholders]);
   // Note: we generally shouldn't depend on 'shareholders' array for the fetching logic
   // itself to avoid infinite loops if fetch updates the array,
   // BUT we need to know if it's there.

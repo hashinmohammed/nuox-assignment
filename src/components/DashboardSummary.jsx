@@ -10,7 +10,7 @@ export default function DashboardSummary() {
 
   useEffect(() => {
     fetchSummary();
-  }, []);
+  }, [fetchSummary]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-IN", {
