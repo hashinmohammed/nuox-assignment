@@ -63,8 +63,8 @@ A modern, full-featured application for managing shareholders, equity shares, in
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/shareholder-management.git
-    cd shareholder-management
+    git clone https://github.com/hashinmohammed/nuox-assignment.git
+    cd nuox-assignment
     ```
 
 2.  **Install dependencies:**
