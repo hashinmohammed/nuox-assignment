@@ -8,12 +8,17 @@ export const useShareholderStore = create((set, get) => ({
   error: null,
 
   // Actions
-  fetchShareholders: async (page = 1, limit = 10) => {
+  fetchShareholders: async (page = 1, limit = 10, filters = {}) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(
-        `/api/shareholders?page=${page}&limit=${limit}`
-      );
+      const params = new URLSearchParams({
+        page,
+        limit,
+        ...(filters.search && { search: filters.search }),
+        ...(filters.country && { country: filters.country }),
+      });
+
+      const response = await fetch(`/api/shareholders?${params}`);
       if (!response.ok) throw new Error("Failed to fetch shareholders");
       const data = await response.json();
       set({

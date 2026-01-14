@@ -286,5 +286,41 @@
     "balanceAmount": 11000,
     "paidDate": null,
     "createdAt": "2024-07-15T10:05:00.000Z"
+  },
+  {
+    "id": "f1cd30ba-94e0-420c-8b01-45abcecc0d53",
+    "shareId": "71e2c021-3119-4957-a04e-d9814ba8012d",
+    "dueDate": "2026-01-21T00:00:00.000Z",
+    "installmentAmount": 900000,
+    "installmentNumber": 1,
+    "status": "pending",
+    "paidAmount": 0,
+    "balanceAmount": 900000,
+    "paidDate": null,
+    "createdAt": "2026-01-14T07:56:48.083Z"
+  },
+  {
+    "id": "07e651e9-561f-400d-939f-197420f84560",
+    "shareId": "71e2c021-3119-4957-a04e-d9814ba8012d",
+    "dueDate": "2027-01-21T00:00:00.000Z",
+    "installmentAmount": 900000,
+    "installmentNumber": 2,
+    "status": "pending",
+    "paidAmount": 0,
+    "balanceAmount": 900000,
+    "paidDate": null,
+    "createdAt": "2026-01-14T07:56:48.083Z"
+  },
+  {
+    "id": "36c7537c-7226-41f4-b67d-d2d0fd687a89",
+    "shareId": "71e2c021-3119-4957-a04e-d9814ba8012d",
+    "dueDate": "2028-01-21T00:00:00.000Z",
+    "installmentAmount": 900000,
+    "installmentNumber": 3,
+    "status": "pending",
+    "paidAmount": 0,
+    "balanceAmount": 900000,
+    "paidDate": null,
+    "createdAt": "2026-01-14T07:56:48.083Z"
   }
 ]

@@ -102,5 +102,19 @@
     "officeStaff": "Priya",
     "createdAt": "2024-07-15T10:05:00.000Z",
     "updatedAt": "2024-07-15T10:05:00.000Z"
+  },
+  {
+    "id": "71e2c021-3119-4957-a04e-d9814ba8012d",
+    "shareholderId": "e18c2c82-a9ed-489e-8bdf-16638e5ea032",
+    "duration": 3,
+    "annualAmount": 900000,
+    "installmentType": "annual",
+    "customInstallments": null,
+    "startDate": "2026-01-21",
+    "paymentMode": "online",
+    "officeStaff": "hhfhff",
+    "totalAmount": 2700000,
+    "createdAt": "2026-01-14T07:56:48.082Z",
+    "updatedAt": "2026-01-14T07:56:48.082Z"
   }
 ]

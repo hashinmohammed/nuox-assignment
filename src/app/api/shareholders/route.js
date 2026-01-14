@@ -9,7 +9,10 @@ export async function GET(request) {
     const page = parseInt(searchParams.get("page")) || null;
     const limit = parseInt(searchParams.get("limit")) || 10;
 
-    const result = db.shareholders.getAll(page, limit);
+    const search = searchParams.get("search");
+    const country = searchParams.get("country");
+
+    const result = db.shareholders.getAll(page, limit, { search, country });
 
     // If pagination is requested, return paginated response
     if (page) {

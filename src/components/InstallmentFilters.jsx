@@ -5,7 +5,13 @@ import Button from "./ui/Button";
 import Card from "./ui/Card";
 import { Filter, X } from "lucide-react";
 
-export default function InstallmentFilters({ onFilterChange, countries = [] }) {
+export default function InstallmentFilters({
+  onFilterChange,
+  countries = [],
+  hideStatus = false,
+  hideDates = false,
+  searchPlaceholder = "Search by name...",
+}) {
   const [filters, setFilters] = useState({
     country: "",
     search: "",
@@ -66,12 +72,15 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
   return (
     <Card className="mb-6">
       <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 dark:text-white">
-        Filter Installments
+        Filter
       </h3>
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col lg:flex-row lg:items-end gap-4"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-4 flex-1">
           {/* Country Filter */}
-          <div>
+          <div className="lg:w-48">
             <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
               Country
             </label>
@@ -90,72 +99,78 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
           </div>
 
           {/* Search User */}
-          <div>
+          <div className="lg:flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
-              Search User
+              Search
             </label>
             <input
               type="text"
               value={filters.search}
               onChange={(e) => handleChange("search", e.target.value)}
-              placeholder="Search by name..."
+              placeholder={searchPlaceholder}
               className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             />
           </div>
 
           {/* Status Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
-              Status
-            </label>
-            <select
-              value={filters.status}
-              onChange={(e) => handleChange("status", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-            >
-              {statuses.map((status) => (
-                <option key={status.value} value={status.value}>
-                  {status.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          {!hideStatus && (
+            <div className="lg:w-40">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
+                Status
+              </label>
+              <select
+                value={filters.status}
+                onChange={(e) => handleChange("status", e.target.value)}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+              >
+                {statuses.map((status) => (
+                  <option key={status.value} value={status.value}>
+                    {status.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           {/* Month Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
-              Month
-            </label>
-            <select
-              value={filters.month}
-              onChange={(e) => handleChange("month", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-            >
-              {months.map((month) => (
-                <option key={month.value} value={month.value}>
-                  {month.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          {!hideDates && (
+            <div className="lg:w-40">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
+                Month
+              </label>
+              <select
+                value={filters.month}
+                onChange={(e) => handleChange("month", e.target.value)}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+              >
+                {months.map((month) => (
+                  <option key={month.value} value={month.value}>
+                    {month.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           {/* Year Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
-              Year
-            </label>
-            <select
-              value={filters.year}
-              onChange={(e) => handleChange("year", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-            >
-              {years.map((year) => (
-                <option key={year.value} value={year.value}>
-                  {year.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          {!hideDates && (
+            <div className="lg:w-32">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">
+                Year
+              </label>
+              <select
+                value={filters.year}
+                onChange={(e) => handleChange("year", e.target.value)}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+              >
+                {years.map((year) => (
+                  <option key={year.value} value={year.value}>
+                    {year.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         {/* Action Buttons */}

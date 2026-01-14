@@ -75,8 +75,27 @@ const writeData = (filename, data) => {
 export const db = {
   // Shareholders
   shareholders: {
-    getAll: (page = null, limit = 10) => {
-      const data = readData("shareholders.json");
+    getAll: (page = null, limit = 10, filters = {}) => {
+      let data = readData("shareholders.json");
+
+      // Apply Search Filter (Name or Email)
+      if (filters.search) {
+        const searchTerm = filters.search.toLowerCase();
+        data = data.filter(
+          (s) =>
+            s.name.toLowerCase().includes(searchTerm) ||
+            s.email.toLowerCase().includes(searchTerm)
+        );
+      }
+
+      // Apply Country Filter
+      if (filters.country) {
+        data = data.filter((s) => s.country === filters.country);
+      }
+
+      // Sort by createdAt descending (newest first)
+      data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
       if (page) {
         return paginate(data, page, limit);
       }

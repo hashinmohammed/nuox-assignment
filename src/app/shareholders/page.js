@@ -1,56 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Table from "@/components/ui/Table";
 import Pagination from "@/components/ui/Pagination";
-import SearchBar from "@/components/SearchBar";
+import InstallmentFilters from "@/components/InstallmentFilters"; // Updated import
 import { useShareholderStore } from "@/stores/shareholderStore";
 import { formatDate } from "@/utils/dateUtils";
 import { ArrowLeft, UserPlus } from "lucide-react";
 
 export default function ShareholdersPage() {
   const router = useRouter();
-  const {
-    shareholders,
-    pagination,
-    loading,
-    fetchShareholders,
-    searchByEmail,
-  } = useShareholderStore();
+  const { shareholders, pagination, loading, fetchShareholders } =
+    useShareholderStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchResults, setSearchResults] = useState(null);
-  const [searching, setSearching] = useState(false);
+  const [filters, setFilters] = useState({
+    country: "",
+    search: "",
+  });
+
+  // Calculate unique countries for filter dropdown
+  // Note: ideally this should come from a separate API or aggregation,
+  // but for now we can compute it from the current list or better yet,
+  // we might want a distinct list. Since we only have paginated data,
+  // let's define a static list or try to get it from the store if possible.
+  // For this assignment, we'll use a hardcoded list or assume we want to filter
+  // by countries present in the system.
+  // However, without a "get all countries" API, we can only filter by what we know.
+  // Let's use a standard list of countries for now or just the ones visible if we had all data.
+  // To make it useable, let's include some common ones + whatever is in the current view?
+  // Actually, filtering usually requires a known set. Let's use a safe list + dynamic addition.
+  const countries = useMemo(() => {
+    const unique = new Set(shareholders.map((s) => s.country));
+    return Array.from(unique).sort();
+  }, [shareholders]);
 
   useEffect(() => {
-    if (!searchResults) {
-      fetchShareholders(currentPage);
-    }
-  }, [currentPage, searchResults]);
+    fetchShareholders(currentPage, 10, filters);
+  }, [currentPage, filters]); // Re-fetch when page or filters change
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const handleSearch = async (email) => {
-    if (!email) {
-      setSearchResults(null);
-      setCurrentPage(1);
-      return;
-    }
-
-    setSearching(true);
-    try {
-      const results = await searchByEmail(email);
-      setSearchResults(results);
-    } catch (error) {
-      console.error("Search error:", error);
-    } finally {
-      setSearching(false);
-    }
+  const handleFilterChange = (newFilters) => {
+    setFilters((prev) => ({
+      ...prev,
+      country: newFilters.country,
+      search: newFilters.search,
+    }));
+    setCurrentPage(1); // Reset to first page on filter change
   };
 
   const handleRowClick = (row) => {
@@ -76,9 +78,6 @@ export default function ShareholdersPage() {
       render: (row) => formatDate(row.createdAt),
     },
   ];
-
-  const displayData = searchResults !== null ? searchResults : shareholders;
-  const showPagination = searchResults === null && pagination;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -112,34 +111,29 @@ export default function ShareholdersPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <InstallmentFilters
+          onFilterChange={handleFilterChange}
+          countries={
+            countries.length > 0
+              ? countries
+              : ["India", "USA", "UAE", "UK", "Canada"]
+          } // Fallback list
+          hideStatus={true}
+          hideDates={true}
+          searchPlaceholder="Search by name or email..."
+        />
+
         <Card>
-          <SearchBar
-            onSearch={handleSearch}
-            placeholder="Search shareholders by email..."
-            loading={searching}
-          />
-
-          {searchResults !== null && (
-            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg dark:bg-blue-900/20 dark:border-blue-800">
-              <p className="text-sm text-blue-900 dark:text-blue-300">
-                Found {searchResults.length} result
-                {searchResults.length !== 1 ? "s" : ""}
-              </p>
-            </div>
-          )}
-
-          {loading || searching ? (
+          {loading ? (
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              {searching ? "Searching..." : "Loading shareholders..."}
+              Loading shareholders...
             </div>
-          ) : displayData.length === 0 ? (
+          ) : shareholders.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">
-                {searchResults !== null
-                  ? "No shareholders found matching your search"
-                  : "No shareholders found"}
+              <p className="text-gray-500 mb-4 dark:text-gray-400">
+                No shareholders found matching your filters
               </p>
-              {searchResults === null && (
+              {!filters.search && !filters.country && (
                 <Link href="/shareholders/new">
                   <Button>Add Your First Shareholder</Button>
                 </Link>
@@ -149,10 +143,10 @@ export default function ShareholdersPage() {
             <>
               <Table
                 columns={columns}
-                data={displayData}
+                data={shareholders}
                 onRowClick={handleRowClick}
               />
-              {showPagination && (
+              {pagination && (
                 <Pagination
                   pagination={pagination}
                   onPageChange={handlePageChange}
