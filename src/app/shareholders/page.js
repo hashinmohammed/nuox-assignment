@@ -129,7 +129,7 @@ export default function ShareholdersPage() {
           )}
 
           {loading || searching ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               {searching ? "Searching..." : "Loading shareholders..."}
             </div>
           ) : displayData.length === 0 ? (

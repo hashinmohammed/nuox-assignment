@@ -57,17 +57,21 @@ export default function ShareDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-gray-500">Loading share details...</div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center dark:bg-gray-950">
+        <div className="text-gray-500 dark:text-gray-400">
+          Loading share details...
+        </div>
       </div>
     );
   }
 
   if (!share) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center dark:bg-gray-950">
         <div className="text-center">
-          <p className="text-gray-500 mb-4">Share not found</p>
+          <p className="text-gray-500 mb-4 dark:text-gray-400">
+            Share not found
+          </p>
           <Link href={`/shareholders/${shareholderId}`}>
             <Button>Back to Shareholder</Button>
           </Link>

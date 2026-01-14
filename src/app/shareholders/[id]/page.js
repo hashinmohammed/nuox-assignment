@@ -47,9 +47,11 @@ export default function ShareholderDetailPage() {
 
   if (!shareholder) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center dark:bg-gray-950">
         <div className="text-center">
-          <p className="text-gray-500 mb-4">Shareholder not found</p>
+          <p className="text-gray-500 mb-4 dark:text-gray-400">
+            Shareholder not found
+          </p>
           <Link href="/shareholders">
             <Button>Back to Shareholders</Button>
           </Link>

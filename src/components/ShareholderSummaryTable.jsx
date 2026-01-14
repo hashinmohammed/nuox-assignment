@@ -131,7 +131,9 @@ export default function ShareholderSummaryTable() {
       />
       <Card title="Installment Due Amount Details">
         {loading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+            Loading...
+          </div>
         ) : (
           <>
             <Table
