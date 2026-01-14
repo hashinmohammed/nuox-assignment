@@ -5,7 +5,7 @@ export const useShareStore = create((set, get) => ({
   // State
   shares: [],
   selectedShare: null,
-  installments: [], // Keep installments for now, as it's not explicitly removed and selectors still use it
+  installments: [],
   loading: false,
   error: null,
 
@@ -14,7 +14,6 @@ export const useShareStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const data = await shareService.getSharesByShareholderId(shareholderId);
-      // The API returns { shares, pagination } but the component expects array
       set({ shares: data.shares || [], loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });
@@ -33,7 +32,7 @@ export const useShareStore = create((set, get) => ({
           ...state.installments.filter((i) => i.shareId !== shareId),
           ...data.installments,
         ],
-        selectedShare: data, // Add selectedShare update
+        selectedShare: data,
         loading: false,
       }));
       return data;
@@ -50,7 +49,7 @@ export const useShareStore = create((set, get) => ({
 
       set((state) => ({
         shares: [...state.shares, data.share],
-        installments: [...state.installments, ...data.installments], // Keep installments update
+        installments: [...state.installments, ...data.installments],
         loading: false,
       }));
       return { share: data.share, installments: data.installments };

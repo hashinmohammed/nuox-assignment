@@ -37,9 +37,6 @@ export const shareService = {
   },
 
   getShareWithInstallments: async (shareId) => {
-    // This seems to be a composite fetch in the original store,
-    // but the store was fetching /api/shares/${shareId} which returns { share, installments }
-    // verifying that assumption from previous code reading.
     const response = await fetch(`/api/shares/${shareId}`);
     if (!response.ok) throw new Error("Failed to fetch share details");
     return await response.json();
