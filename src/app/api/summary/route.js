@@ -6,7 +6,6 @@ import {
   calculateOutstanding,
 } from "@/utils/paymentAllocator";
 
-// GET /api/summary?type=installments&page=1&limit=10 - Get dashboard summary or installments
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -15,7 +14,6 @@ export async function GET(request) {
     const limit = parseInt(searchParams.get("limit")) || 10;
 
     if (type === "installments") {
-      // Get all installments with shareholder info
       const allInstallments = db.installments.getAll();
       const shareholders = db.shareholders.getAll();
       const shares = db.shares.getAll();
@@ -27,7 +25,6 @@ export async function GET(request) {
       const year = searchParams.get("year");
       const status = searchParams.get("status");
 
-      // Enrich installments with shareholder data
       let enrichedInstallments = allInstallments.map((inst) => {
         const share = shares.find((s) => s.id === inst.shareId);
         const shareholder = share
@@ -84,7 +81,6 @@ export async function GET(request) {
         );
       }
 
-      // Apply pagination if requested
       if (page) {
         const startIndex = (page - 1) * limit;
         const endIndex = startIndex + limit;
@@ -112,7 +108,6 @@ export async function GET(request) {
       );
     }
 
-    // Default: dashboard summary
     const installments = db.installments.getAll();
 
     const totalExpected = calculateTotalExpected(installments);

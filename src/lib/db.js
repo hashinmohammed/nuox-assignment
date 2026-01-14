@@ -9,7 +9,6 @@ if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-// Pagination helper
 const paginate = (data, page = 1, limit = 10) => {
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
@@ -28,7 +27,6 @@ const paginate = (data, page = 1, limit = 10) => {
   };
 };
 
-// Initialize data files if they don't exist
 const initializeDataFiles = () => {
   const files = [
     "shareholders.json",
@@ -47,7 +45,6 @@ const initializeDataFiles = () => {
 
 initializeDataFiles();
 
-// Read data from a JSON file
 const readData = (filename) => {
   try {
     const filePath = path.join(DATA_DIR, filename);
@@ -59,7 +56,6 @@ const readData = (filename) => {
   }
 };
 
-// Write data to a JSON file
 const writeData = (filename, data) => {
   try {
     const filePath = path.join(DATA_DIR, filename);

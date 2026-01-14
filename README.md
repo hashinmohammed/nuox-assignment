@@ -2,6 +2,14 @@
 
 A modern, full-featured application for managing shareholders, equity shares, installment plans, and payment tracking. Built with the latest web technologies for speed, scalability, and a premium user experience.
 
+> [!IMPORTANT] > **Live Demo & Data Persistence**
+>
+> This application uses a local **JSON file-based database** (`data/shareholders.json`, etc.) for simplicity.
+>
+> - **Live Preview**: [https://shareholdermanager.vercel.app/](https://shareholdermanager.vercel.app/)
+> - **Limitation**: In the live serverless environment (Vercel), file writes are **temporary**. Any data you add or edit will behave correctly in the UI but **will not persist** after the server restarts or redeploys.
+> - **For Full Functionality**: Please clone the repository and run it **locally** (`npm run dev`). Persistent data storage works perfectly in the local environment.
+
 ## 🚀 Key Features
 
 - **Shareholder Management**:
