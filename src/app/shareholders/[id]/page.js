@@ -6,8 +6,8 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import ShareAmountForm from "@/components/ShareAmountForm";
-import { useShareholderStore } from "@/stores/shareholderStore";
-import { useShareStore } from "@/stores/shareStore";
+import { useShareholderData } from "@/hooks/useShareholderData";
+import { useShareStore } from "@/stores/shareStore"; // Still needed for fetchShares if used in handles
 import { formatDate } from "@/utils/dateUtils";
 import { ArrowLeft, Plus, Trash2, Edit, X } from "lucide-react";
 
@@ -16,31 +16,13 @@ export default function ShareholderDetailPage() {
   const router = useRouter();
   const shareholderId = params.id;
 
-  const { shareholders, fetchShareholderById } = useShareholderStore();
-  const { shares, fetchShares } = useShareStore();
+  const {
+    shareholder,
+    shares: shareholderShares,
+    loading,
+  } = useShareholderData(shareholderId);
+  const { fetchShares } = useShareStore(); // We still need this for handleShareCreated
   const [showAddShare, setShowAddShare] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadData = async () => {
-      // Always try to find in store first
-      const existing = shareholders.find((s) => s.id === shareholderId);
-
-      if (!existing) {
-        await fetchShareholderById(shareholderId);
-      }
-
-      await fetchShares(shareholderId);
-      setLoading(false);
-    };
-
-    loadData();
-  }, [shareholderId]);
-
-  const shareholder = shareholders.find((sh) => sh.id === shareholderId);
-  const shareholderShares = shares.filter(
-    (s) => s.shareholderId === shareholderId
-  );
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-IN", {

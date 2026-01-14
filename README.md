@@ -80,6 +80,8 @@ A modern, full-featured application for managing shareholders, equity shares, in
 
 - `src/app`: Next.js App Router pages and layouts.
 - `src/components`: Reusable UI components (Cards, Tables, Modals, etc.).
+- `src/hooks`: Custom React hooks for shared logic (e.g., `useDebounce`, `useShareholderData`).
+- `src/services`: API service modules for centralized data fetching (`shareholderService`, `shareService`).
 - `src/stores`: Global state management using Zustand (ShareStore, ShareholderStore).
 - `src/utils`: Helper functions for dates, calculations, and Excel export logic.
 
