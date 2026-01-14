@@ -11,6 +11,7 @@ import { useShareholderStore } from "@/stores/shareholderStore";
 import { formatDate } from "@/utils/dateUtils";
 import { getPaymentStatistics } from "@/utils/paymentAllocator";
 import { exportShareholderDetail } from "@/utils/excelExporter";
+import { ArrowLeft, Download } from "lucide-react";
 
 export default function ShareDetailPage() {
   const params = useParams();

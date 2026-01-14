@@ -9,6 +9,7 @@ import ShareAmountForm from "@/components/ShareAmountForm";
 import { useShareholderStore } from "@/stores/shareholderStore";
 import { useShareStore } from "@/stores/shareStore";
 import { formatDate } from "@/utils/dateUtils";
+import { ArrowLeft, Plus, Trash2, Edit, X } from "lucide-react";
 
 export default function ShareholderDetailPage() {
   const params = useParams();
@@ -65,8 +66,12 @@ export default function ShareholderDetailPage() {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div className="flex-1">
               <Link href="/shareholders">
-                <Button variant="secondary" className="mb-2 text-sm">
-                  ← Back to Shareholders
+                <Button
+                  variant="secondary"
+                  className="mb-2 text-sm flex items-center gap-2"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Shareholders
                 </Button>
               </Link>
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
@@ -78,9 +83,19 @@ export default function ShareholderDetailPage() {
             </div>
             <Button
               onClick={() => setShowAddShare(!showAddShare)}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto flex items-center justify-center gap-2"
             >
-              {showAddShare ? "Cancel" : "Add New Share"}
+              {showAddShare ? (
+                <>
+                  <X className="w-4 h-4" />
+                  Cancel
+                </>
+              ) : (
+                <>
+                  <Plus className="w-4 h-4" />
+                  Add New Share
+                </>
+              )}
             </Button>
           </div>
         </div>

@@ -7,6 +7,7 @@ import Button from "./ui/Button";
 import Card from "./ui/Card";
 import { useShareholderStore } from "@/stores/shareholderStore";
 import { validateShareholderForm } from "@/utils/validators";
+import { UserPlus, RotateCcw } from "lucide-react";
 
 export default function ShareholderForm({ onSuccess }) {
   const [formData, setFormData] = useState({
@@ -107,15 +108,21 @@ export default function ShareholderForm({ onSuccess }) {
         )}
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button type="submit" disabled={loading} className="w-full sm:w-auto">
-            {loading ? "Creating..." : "Create"}
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
+          >
+            <UserPlus className="w-4 h-4" />
+            {loading ? "Creating..." : "Create Shareholder"}
           </Button>
           <Button
             type="button"
             variant="secondary"
             onClick={handleReset}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
           >
+            <RotateCcw className="w-4 h-4" />
             Reset
           </Button>
         </div>

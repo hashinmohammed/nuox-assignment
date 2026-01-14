@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "./ui/Button";
+import { Search, X } from "lucide-react";
 
 export default function SearchBar({
   onSearch,
@@ -41,21 +42,9 @@ export default function SearchBar({
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
           >
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         )}
       </div>
@@ -63,8 +52,9 @@ export default function SearchBar({
         <Button
           type="submit"
           disabled={loading || !searchTerm}
-          className="flex-1 sm:flex-none text-sm sm:text-base"
+          className="flex-1 sm:flex-none text-sm sm:text-base flex items-center justify-center gap-2"
         >
+          <Search className="w-4 h-4" />
           {loading ? "Searching..." : "Search"}
         </Button>
         {searchTerm && (
@@ -72,8 +62,9 @@ export default function SearchBar({
             type="button"
             variant="secondary"
             onClick={handleClear}
-            className="flex-1 sm:flex-none text-sm sm:text-base"
+            className="flex-1 sm:flex-none text-sm sm:text-base flex items-center justify-center gap-2"
           >
+            <X className="w-4 h-4" />
             Clear
           </Button>
         )}

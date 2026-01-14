@@ -9,6 +9,7 @@ import { useShareStore } from "@/stores/shareStore";
 import { validateShareForm } from "@/utils/validators";
 import { previewInstallmentSchedule } from "@/utils/installmentCalculator";
 import { formatDate } from "@/utils/dateUtils";
+import { Plus, RotateCcw } from "lucide-react";
 
 export default function ShareAmountForm({ shareholderId, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -281,16 +282,18 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
           <Button
             type="submit"
             disabled={loading || preview.length === 0}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
           >
-            {loading ? "Creating..." : "Create"}
+            <Plus className="w-4 h-4" />
+            {loading ? "Creating..." : "Create Share"}
           </Button>
           <Button
             type="button"
             variant="secondary"
             onClick={handleReset}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
           >
+            <RotateCcw className="w-4 h-4" />
             Reset
           </Button>
         </div>

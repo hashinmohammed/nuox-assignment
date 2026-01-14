@@ -3,6 +3,7 @@
 import Link from "next/link";
 import DashboardSummary from "@/components/DashboardSummary";
 import ShareholderSummaryTable from "@/components/ShareholderSummaryTable";
+import { UserPlus, Users } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function Home() {
@@ -17,12 +18,17 @@ export default function Home() {
             </h1>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
               <Link href="/shareholders/new" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto text-sm">
+                <Button className="w-full sm:w-auto text-sm flex items-center justify-center gap-2">
+                  <UserPlus className="w-4 h-4" />
                   Add Shareholder
                 </Button>
               </Link>
               <Link href="/shareholders" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto text-sm">
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto text-sm flex items-center justify-center gap-2"
+                >
+                  <Users className="w-4 h-4" />
                   View All Shareholders
                 </Button>
               </Link>

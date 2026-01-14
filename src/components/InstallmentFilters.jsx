@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
+import { Filter, X } from "lucide-react";
 
 export default function InstallmentFilters({ onFilterChange, countries = [] }) {
   const [filters, setFilters] = useState({
@@ -159,15 +160,20 @@ export default function InstallmentFilters({ onFilterChange, countries = [] }) {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button type="submit" className="w-full sm:w-auto">
+          <Button
+            type="submit"
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
+          >
+            <Filter className="w-4 h-4" />
             Apply Filters
           </Button>
           <Button
             type="button"
             variant="secondary"
             onClick={handleReset}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
           >
+            <X className="w-4 h-4" />
             Clear Filters
           </Button>
         </div>

@@ -7,6 +7,7 @@ import Input from "./ui/Input";
 import Button from "./ui/Button";
 import { useShareStore } from "@/stores/shareStore";
 import { validatePaymentAmount } from "@/utils/validators";
+import { DollarSign, X } from "lucide-react";
 
 export default function PaymentModal({
   isOpen,
@@ -162,16 +163,18 @@ export default function PaymentModal({
             <Button
               type="submit"
               disabled={loading || !amount}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto flex items-center justify-center gap-2"
             >
+              <DollarSign className="w-4 h-4" />
               {loading ? "Processing..." : "Submit Payment"}
             </Button>
             <Button
               type="button"
               variant="secondary"
               onClick={onClose}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto flex items-center justify-center gap-2"
             >
+              <X className="w-4 h-4" />
               Cancel
             </Button>
           </div>

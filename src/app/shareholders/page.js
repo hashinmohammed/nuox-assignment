@@ -10,6 +10,7 @@ import Pagination from "@/components/ui/Pagination";
 import SearchBar from "@/components/SearchBar";
 import { useShareholderStore } from "@/stores/shareholderStore";
 import { formatDate } from "@/utils/dateUtils";
+import { ArrowLeft, UserPlus } from "lucide-react";
 
 export default function ShareholdersPage() {
   const router = useRouter();
@@ -90,13 +91,15 @@ export default function ShareholdersPage() {
               <Link href="/" className="w-full sm:w-auto">
                 <Button
                   variant="secondary"
-                  className="w-full sm:w-auto text-sm"
+                  className="w-full sm:w-auto text-sm flex items-center justify-center gap-2"
                 >
-                  ← Dashboard
+                  <ArrowLeft className="w-4 h-4" />
+                  Dashboard
                 </Button>
               </Link>
               <Link href="/shareholders/new" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto text-sm">
+                <Button className="w-full sm:w-auto text-sm flex items-center justify-center gap-2">
+                  <UserPlus className="w-4 h-4" />
                   Add Shareholder
                 </Button>
               </Link>
