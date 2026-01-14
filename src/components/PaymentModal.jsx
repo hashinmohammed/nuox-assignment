@@ -154,11 +154,20 @@ export default function PaymentModal({
           )}
 
           {/* Buttons */}
-          <div className="flex gap-3 pt-4">
-            <Button type="submit" disabled={loading || !amount}>
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <Button
+              type="submit"
+              disabled={loading || !amount}
+              className="w-full sm:w-auto"
+            >
               {loading ? "Processing..." : "Submit Payment"}
             </Button>
-            <Button type="button" variant="secondary" onClick={onClose}>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={onClose}
+              className="w-full sm:w-auto"
+            >
               Cancel
             </Button>
           </div>

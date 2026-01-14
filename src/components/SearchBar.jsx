@@ -25,14 +25,17 @@ export default function SearchBar({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col sm:flex-row gap-2 mb-4 sm:mb-6"
+    >
       <div className="flex-1 relative">
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder={placeholder}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+          className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
         />
         {searchTerm && (
           <button
@@ -41,7 +44,7 @@ export default function SearchBar({
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4 sm:w-5 sm:h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -56,14 +59,25 @@ export default function SearchBar({
           </button>
         )}
       </div>
-      <Button type="submit" disabled={loading || !searchTerm}>
-        {loading ? "Searching..." : "Search"}
-      </Button>
-      {searchTerm && (
-        <Button type="button" variant="secondary" onClick={handleClear}>
-          Clear
+      <div className="flex gap-2">
+        <Button
+          type="submit"
+          disabled={loading || !searchTerm}
+          className="flex-1 sm:flex-none text-sm sm:text-base"
+        >
+          {loading ? "Searching..." : "Search"}
         </Button>
-      )}
+        {searchTerm && (
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handleClear}
+            className="flex-1 sm:flex-none text-sm sm:text-base"
+          >
+            Clear
+          </Button>
+        )}
+      </div>
     </form>
   );
 }

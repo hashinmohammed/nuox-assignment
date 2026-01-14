@@ -81,24 +81,32 @@ export default function ShareDetailPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <div>
-              <Link href={`/shareholders/${shareholderId}`}>
-                <Button variant="secondary" className="mb-2">
-                  ← Back to Shareholder
-                </Button>
-              </Link>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Share Details
-              </h1>
-              {shareholder && (
-                <p className="text-gray-600">{shareholder.name}</p>
-              )}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col gap-3">
+            <Link href={`/shareholders/${shareholderId}`}>
+              <Button variant="secondary" className="w-full sm:w-auto text-sm">
+                ← Back to Shareholder
+              </Button>
+            </Link>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4">
+              <div className="flex-1">
+                <h1 className="text-lg sm:text-2xl font-bold text-gray-900 mb-1">
+                  Share Details
+                </h1>
+                {shareholder && (
+                  <p className="text-sm sm:text-base text-gray-600">
+                    {shareholder.name}
+                  </p>
+                )}
+              </div>
+              <Button
+                onClick={handleExport}
+                variant="success"
+                className="w-full sm:w-auto text-sm"
+              >
+                Export to Excel
+              </Button>
             </div>
-            <Button onClick={handleExport} variant="success">
-              Export to Excel
-            </Button>
           </div>
         </div>
       </header>
@@ -107,7 +115,7 @@ export default function ShareDetailPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Share Configuration */}
         <Card title="Share Configuration" className="mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <p className="text-sm text-gray-600">Duration</p>
               <p className="font-medium">
@@ -148,7 +156,7 @@ export default function ShareDetailPage() {
         </Card>
 
         {/* Payment Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <Card className="bg-blue-50">
             <p className="text-sm text-gray-600 mb-1">Total Expected</p>
             <p className="text-2xl font-bold text-blue-700">

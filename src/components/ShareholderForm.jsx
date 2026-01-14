@@ -102,11 +102,16 @@ export default function ShareholderForm({ onSuccess }) {
           </div>
         )}
 
-        <div className="flex gap-3">
-          <Button type="submit" disabled={loading}>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button type="submit" disabled={loading} className="w-full sm:w-auto">
             {loading ? "Creating..." : "Create"}
           </Button>
-          <Button type="button" variant="secondary" onClick={handleReset}>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handleReset}
+            className="w-full sm:w-auto"
+          >
             Reset
           </Button>
         </div>

@@ -19,12 +19,14 @@ export default function NewShareholderPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-4">
-            <Link href="/">
-              <Button variant="secondary">← Back to Dashboard</Button>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+            <Link href="/" className="w-full sm:w-auto">
+              <Button variant="secondary" className="w-full sm:w-auto text-sm">
+                ← Back to Dashboard
+              </Button>
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-lg sm:text-2xl font-bold text-gray-900">
               Add New Shareholder
             </h1>
           </div>
