@@ -1,1 +1,121 @@
-[]
+[
+  {
+    "id": "pay-001",
+    "installmentId": "inst-001",
+    "amount": 1000,
+    "paymentDate": "2024-02-17T00:00:00.000Z",
+    "createdAt": "2024-02-17T10:00:00.000Z"
+  },
+  {
+    "id": "pay-002",
+    "installmentId": "inst-002",
+    "amount": 1000,
+    "paymentDate": "2024-03-17T00:00:00.000Z",
+    "createdAt": "2024-03-17T11:30:00.000Z"
+  },
+  {
+    "id": "pay-003",
+    "installmentId": "inst-003",
+    "amount": 1000,
+    "paymentDate": "2024-04-20T00:00:00.000Z",
+    "createdAt": "2024-04-20T14:15:00.000Z"
+  },
+  {
+    "id": "pay-004",
+    "installmentId": "inst-004",
+    "amount": 500,
+    "paymentDate": "2024-05-20T00:00:00.000Z",
+    "createdAt": "2024-05-20T09:45:00.000Z"
+  },
+  {
+    "id": "pay-005",
+    "installmentId": "inst-006",
+    "amount": 4500,
+    "paymentDate": "2024-03-01T00:00:00.000Z",
+    "createdAt": "2024-03-01T10:00:00.000Z"
+  },
+  {
+    "id": "pay-006",
+    "installmentId": "inst-007",
+    "amount": 4500,
+    "paymentDate": "2024-06-05T00:00:00.000Z",
+    "createdAt": "2024-06-05T13:20:00.000Z"
+  },
+  {
+    "id": "pay-007",
+    "installmentId": "inst-008",
+    "amount": 2000,
+    "paymentDate": "2024-09-10T00:00:00.000Z",
+    "createdAt": "2024-09-10T15:00:00.000Z"
+  },
+  {
+    "id": "pay-008",
+    "installmentId": "inst-010",
+    "amount": 12000,
+    "paymentDate": "2024-04-01T00:00:00.000Z",
+    "createdAt": "2024-04-01T10:30:00.000Z"
+  },
+  {
+    "id": "pay-009",
+    "installmentId": "inst-012",
+    "amount": 15000,
+    "paymentDate": "2024-05-01T00:00:00.000Z",
+    "createdAt": "2024-05-01T11:00:00.000Z"
+  },
+  {
+    "id": "pay-010",
+    "installmentId": "inst-014",
+    "amount": 5000,
+    "paymentDate": "2024-06-15T00:00:00.000Z",
+    "createdAt": "2024-06-15T12:00:00.000Z"
+  },
+  {
+    "id": "pay-011",
+    "installmentId": "inst-015",
+    "amount": 5000,
+    "paymentDate": "2024-09-18T00:00:00.000Z",
+    "createdAt": "2024-09-18T14:30:00.000Z"
+  },
+  {
+    "id": "pay-012",
+    "installmentId": "inst-017",
+    "amount": 833.33,
+    "paymentDate": "2024-07-01T00:00:00.000Z",
+    "createdAt": "2024-07-01T10:15:00.000Z"
+  },
+  {
+    "id": "pay-013",
+    "installmentId": "inst-018",
+    "amount": 833.33,
+    "paymentDate": "2024-08-05T00:00:00.000Z",
+    "createdAt": "2024-08-05T11:45:00.000Z"
+  },
+  {
+    "id": "pay-014",
+    "installmentId": "inst-020",
+    "amount": 1333.33,
+    "paymentDate": "2024-07-15T00:00:00.000Z",
+    "createdAt": "2024-07-15T13:00:00.000Z"
+  },
+  {
+    "id": "pay-015",
+    "installmentId": "inst-021",
+    "amount": 1333.33,
+    "paymentDate": "2024-08-20T00:00:00.000Z",
+    "createdAt": "2024-08-20T10:30:00.000Z"
+  },
+  {
+    "id": "pay-016",
+    "installmentId": "inst-022",
+    "amount": 800,
+    "paymentDate": "2024-09-20T00:00:00.000Z",
+    "createdAt": "2024-09-20T15:45:00.000Z"
+  },
+  {
+    "id": "pay-017",
+    "installmentId": "inst-023",
+    "amount": 11000,
+    "paymentDate": "2024-08-01T00:00:00.000Z",
+    "createdAt": "2024-08-01T09:00:00.000Z"
+  }
+]

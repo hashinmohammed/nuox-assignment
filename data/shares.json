@@ -1,1 +1,106 @@
-[]
+[
+  {
+    "id": "share-001",
+    "shareholderId": "sh-001",
+    "duration": 2,
+    "annualAmount": 12000,
+    "totalAmount": 24000,
+    "installmentType": "monthly",
+    "startDate": "2024-02-17T00:00:00.000Z",
+    "paymentMode": "DD",
+    "officeStaff": "Ramesh",
+    "createdAt": "2024-01-15T10:35:00.000Z",
+    "updatedAt": "2024-01-15T10:35:00.000Z"
+  },
+  {
+    "id": "share-002",
+    "shareholderId": "sh-002",
+    "duration": 3,
+    "annualAmount": 18000,
+    "totalAmount": 54000,
+    "installmentType": "quarterly",
+    "startDate": "2024-03-01T00:00:00.000Z",
+    "paymentMode": "Cheque",
+    "officeStaff": "Suresh",
+    "createdAt": "2024-02-10T14:25:00.000Z",
+    "updatedAt": "2024-02-10T14:25:00.000Z"
+  },
+  {
+    "id": "share-003",
+    "shareholderId": "sh-003",
+    "duration": 1,
+    "annualAmount": 24000,
+    "totalAmount": 24000,
+    "installmentType": "half-yearly",
+    "startDate": "2024-04-01T00:00:00.000Z",
+    "paymentMode": "Online",
+    "officeStaff": "Priya",
+    "createdAt": "2024-03-05T09:20:00.000Z",
+    "updatedAt": "2024-03-05T09:20:00.000Z"
+  },
+  {
+    "id": "share-004",
+    "shareholderId": "sh-004",
+    "duration": 5,
+    "annualAmount": 15000,
+    "totalAmount": 75000,
+    "installmentType": "annual",
+    "startDate": "2024-05-01T00:00:00.000Z",
+    "paymentMode": "DD",
+    "officeStaff": "Amit",
+    "createdAt": "2024-04-12T11:50:00.000Z",
+    "updatedAt": "2024-04-12T11:50:00.000Z"
+  },
+  {
+    "id": "share-005",
+    "shareholderId": "sh-005",
+    "duration": 2,
+    "annualAmount": 20000,
+    "totalAmount": 40000,
+    "installmentType": "quarterly",
+    "startDate": "2024-06-15T00:00:00.000Z",
+    "paymentMode": "Cheque",
+    "officeStaff": "Kavita",
+    "createdAt": "2024-05-20T16:35:00.000Z",
+    "updatedAt": "2024-05-20T16:35:00.000Z"
+  },
+  {
+    "id": "share-006",
+    "shareholderId": "sh-001",
+    "duration": 1,
+    "annualAmount": 10000,
+    "totalAmount": 10000,
+    "installmentType": "monthly",
+    "startDate": "2024-07-01T00:00:00.000Z",
+    "paymentMode": "Online",
+    "officeStaff": "Ramesh",
+    "createdAt": "2024-06-15T10:00:00.000Z",
+    "updatedAt": "2024-06-15T10:00:00.000Z"
+  },
+  {
+    "id": "share-007",
+    "shareholderId": "sh-006",
+    "duration": 3,
+    "annualAmount": 16000,
+    "totalAmount": 48000,
+    "installmentType": "monthly",
+    "startDate": "2024-07-15T00:00:00.000Z",
+    "paymentMode": "DD",
+    "officeStaff": "Suresh",
+    "createdAt": "2024-06-08T13:05:00.000Z",
+    "updatedAt": "2024-06-08T13:05:00.000Z"
+  },
+  {
+    "id": "share-008",
+    "shareholderId": "sh-007",
+    "duration": 2,
+    "annualAmount": 22000,
+    "totalAmount": 44000,
+    "installmentType": "half-yearly",
+    "startDate": "2024-08-01T00:00:00.000Z",
+    "paymentMode": "Online",
+    "officeStaff": "Priya",
+    "createdAt": "2024-07-15T10:05:00.000Z",
+    "updatedAt": "2024-07-15T10:05:00.000Z"
+  }
+]

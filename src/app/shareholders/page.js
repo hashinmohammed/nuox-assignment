@@ -7,21 +7,49 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Table from "@/components/ui/Table";
 import Pagination from "@/components/ui/Pagination";
+import SearchBar from "@/components/SearchBar";
 import { useShareholderStore } from "@/stores/shareholderStore";
 import { formatDate } from "@/utils/dateUtils";
 
 export default function ShareholdersPage() {
   const router = useRouter();
-  const { shareholders, pagination, loading, fetchShareholders } =
-    useShareholderStore();
+  const {
+    shareholders,
+    pagination,
+    loading,
+    fetchShareholders,
+    searchByEmail,
+  } = useShareholderStore();
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchResults, setSearchResults] = useState(null);
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
-    fetchShareholders(currentPage);
-  }, [currentPage]);
+    if (!searchResults) {
+      fetchShareholders(currentPage);
+    }
+  }, [currentPage, searchResults]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleSearch = async (email) => {
+    if (!email) {
+      setSearchResults(null);
+      setCurrentPage(1);
+      return;
+    }
+
+    setSearching(true);
+    try {
+      const results = await searchByEmail(email);
+      setSearchResults(results);
+    } catch (error) {
+      console.error("Search error:", error);
+    } finally {
+      setSearching(false);
+    }
   };
 
   const columns = [
@@ -47,6 +75,9 @@ export default function ShareholdersPage() {
     },
   ];
 
+  const displayData = searchResults !== null ? searchResults : shareholders;
+  const showPagination = searchResults === null && pagination;
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -71,24 +102,47 @@ export default function ShareholdersPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Card>
-          {loading ? (
-            <div className="text-center py-8 text-gray-500">
-              Loading shareholders...
+          <SearchBar
+            onSearch={handleSearch}
+            placeholder="Search shareholders by email..."
+            loading={searching}
+          />
+
+          {searchResults !== null && (
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-900">
+                Found {searchResults.length} result
+                {searchResults.length !== 1 ? "s" : ""}
+              </p>
             </div>
-          ) : shareholders.length === 0 ? (
+          )}
+
+          {loading || searching ? (
+            <div className="text-center py-8 text-gray-500">
+              {searching ? "Searching..." : "Loading shareholders..."}
+            </div>
+          ) : displayData.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">No shareholders found</p>
-              <Link href="/shareholders/new">
-                <Button>Add Your First Shareholder</Button>
-              </Link>
+              <p className="text-gray-500 mb-4">
+                {searchResults !== null
+                  ? "No shareholders found matching your search"
+                  : "No shareholders found"}
+              </p>
+              {searchResults === null && (
+                <Link href="/shareholders/new">
+                  <Button>Add Your First Shareholder</Button>
+                </Link>
+              )}
             </div>
           ) : (
             <>
-              <Table columns={columns} data={shareholders} />
-              <Pagination
-                pagination={pagination}
-                onPageChange={handlePageChange}
-              />
+              <Table columns={columns} data={displayData} />
+              {showPagination && (
+                <Pagination
+                  pagination={pagination}
+                  onPageChange={handlePageChange}
+                />
+              )}
             </>
           )}
         </Card>

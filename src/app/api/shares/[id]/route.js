@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 // GET /api/shares/[id] - Get share with installments
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const share = db.shares.getById(id);
 
     if (!share) {
@@ -27,7 +27,7 @@ export async function GET(request, { params }) {
 // PUT /api/shares/[id] - Update share
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     const share = db.shares.update(id, body);
@@ -49,7 +49,7 @@ export async function PUT(request, { params }) {
 // DELETE /api/shares/[id] - Delete share and its installments
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // Delete installments first
     db.installments.deleteByShareId(id);
