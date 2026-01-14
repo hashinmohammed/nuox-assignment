@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import toast from "react-hot-toast";
 import Input from "./ui/Input";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
@@ -64,6 +65,7 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
     const validation = validateShareForm(formData);
     if (!validation.valid) {
       setErrors(validation.errors);
+      toast.error("Please fix the errors in the form");
       return;
     }
 
@@ -89,10 +91,12 @@ export default function ShareAmountForm({ shareholderId, onSuccess }) {
         officeStaff: "",
       });
       setErrors({});
+      toast.success("Share created successfully!");
 
       if (onSuccess) onSuccess();
     } catch (error) {
       setErrors({ submit: error.message });
+      toast.error(error.message || "Failed to create share");
     }
   };
 

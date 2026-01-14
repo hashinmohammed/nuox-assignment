@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import Modal from "./ui/Modal";
 import Input from "./ui/Input";
 import Button from "./ui/Button";
@@ -29,6 +30,7 @@ export default function PaymentModal({
     );
     if (!validation.valid) {
       setError(validation.error);
+      toast.error(validation.error);
       return;
     }
 
@@ -37,10 +39,12 @@ export default function PaymentModal({
       setAmount("");
       setPaymentDate(new Date().toISOString().split("T")[0]);
       setError("");
+      toast.success(`Payment of ₹${amount} recorded successfully!`);
       if (onSuccess) onSuccess();
       onClose();
     } catch (err) {
       setError(err.message);
+      toast.error(err.message || "Failed to record payment");
     }
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import Input from "./ui/Input";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
@@ -33,6 +34,7 @@ export default function ShareholderForm({ onSuccess }) {
     const validation = validateShareholderForm(formData);
     if (!validation.valid) {
       setErrors(validation.errors);
+      toast.error("Please fix the errors in the form");
       return;
     }
 
@@ -41,9 +43,11 @@ export default function ShareholderForm({ onSuccess }) {
       // Reset form
       setFormData({ name: "", email: "", mobile: "", country: "" });
       setErrors({});
+      toast.success(`Shareholder "${formData.name}" added successfully!`);
       if (onSuccess) onSuccess();
     } catch (error) {
       setErrors({ submit: error.message });
+      toast.error(error.message || "Failed to add shareholder");
     }
   };
 

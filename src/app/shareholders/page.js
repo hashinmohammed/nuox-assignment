@@ -52,17 +52,16 @@ export default function ShareholdersPage() {
     }
   };
 
+  const handleRowClick = (row) => {
+    router.push(`/shareholders/${row.id}`);
+  };
+
   const columns = [
     {
       header: "Name",
       accessor: "name",
       render: (row) => (
-        <button
-          onClick={() => router.push(`/shareholders/${row.id}`)}
-          className="text-blue-600 hover:text-blue-800 font-medium"
-        >
-          {row.name}
-        </button>
+        <span className="font-medium text-gray-900">{row.name}</span>
       ),
     },
     { header: "Email", accessor: "email" },
@@ -143,7 +142,11 @@ export default function ShareholdersPage() {
             </div>
           ) : (
             <>
-              <Table columns={columns} data={displayData} />
+              <Table
+                columns={columns}
+                data={displayData}
+                onRowClick={handleRowClick}
+              />
               {showPagination && (
                 <Pagination
                   pagination={pagination}
