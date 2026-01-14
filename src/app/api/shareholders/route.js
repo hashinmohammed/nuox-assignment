@@ -1,0 +1,70 @@
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { validateShareholderForm } from "@/utils/validators";
+
+// GET /api/shareholders - Get all shareholders with pagination
+export async function GET(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get("page")) || null;
+    const limit = parseInt(searchParams.get("limit")) || 10;
+
+    const result = db.shareholders.getAll(page, limit);
+
+    // If pagination is requested, return paginated response
+    if (page) {
+      return NextResponse.json(
+        {
+          shareholders: result.data,
+          pagination: result.pagination,
+        },
+        { status: 200 }
+      );
+    }
+
+    // Otherwise return all shareholders
+    return NextResponse.json({ shareholders: result }, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching shareholders:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch shareholders" },
+      { status: 500 }
+    );
+  }
+}
+
+// POST /api/shareholders - Create new shareholder
+export async function POST(request) {
+  try {
+    const body = await request.json();
+
+    // Validate input
+    const validation = validateShareholderForm(body);
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: "Validation failed", errors: validation.errors },
+        { status: 400 }
+      );
+    }
+
+    // Check if email already exists
+    const existing = db.shareholders.getByEmail(body.email);
+    if (existing.length > 0) {
+      return NextResponse.json(
+        { error: "Email already exists" },
+        { status: 409 }
+      );
+    }
+
+    // Create shareholder
+    const shareholder = db.shareholders.create(body);
+
+    return NextResponse.json({ shareholder }, { status: 201 });
+  } catch (error) {
+    console.error("Error creating shareholder:", error);
+    return NextResponse.json(
+      { error: "Failed to create shareholder" },
+      { status: 500 }
+    );
+  }
+}
