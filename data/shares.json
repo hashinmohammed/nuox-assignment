@@ -130,5 +130,19 @@
     "totalAmount": 6000,
     "createdAt": "2026-01-14T08:18:29.038Z",
     "updatedAt": "2026-01-14T08:18:29.038Z"
+  },
+  {
+    "id": "103d941c-da44-49c3-b921-a697c214562c",
+    "shareholderId": "sh-011",
+    "duration": 1,
+    "annualAmount": 788868,
+    "installmentType": "custom",
+    "customInstallments": 78,
+    "startDate": "2026-01-15",
+    "paymentMode": "DD",
+    "officeStaff": "tsdgsgsdg",
+    "totalAmount": 788868,
+    "createdAt": "2026-01-14T08:24:55.581Z",
+    "updatedAt": "2026-01-14T08:24:55.581Z"
   }
 ]
