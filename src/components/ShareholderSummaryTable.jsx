@@ -87,6 +87,15 @@ export default function ShareholderSummaryTable() {
       render: (row) => formatDate(row.dueDate),
     },
     {
+      header: "Country",
+      accessor: "shareholderCountry",
+      render: (row) => (
+        <span className="text-gray-700 dark:text-gray-300">
+          {row.shareholderCountry || "-"}
+        </span>
+      ),
+    },
+    {
       header: "Due Amount (INR)",
       accessor: "installmentAmount",
       render: (row) => formatCurrency(row.installmentAmount),

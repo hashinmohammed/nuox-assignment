@@ -131,5 +131,12 @@
     "amount": 3000,
     "paymentDate": "2026-01-14",
     "createdAt": "2026-01-14T05:16:22.838Z"
+  },
+  {
+    "id": "35dfcf59-62b0-44a6-863a-da6e77e7d590",
+    "installmentId": "f1cd30ba-94e0-420c-8b01-45abcecc0d53",
+    "amount": 900000,
+    "paymentDate": "2026-01-14",
+    "createdAt": "2026-01-14T08:19:26.641Z"
   }
 ]

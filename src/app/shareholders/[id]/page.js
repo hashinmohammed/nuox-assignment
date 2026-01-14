@@ -16,15 +16,25 @@ export default function ShareholderDetailPage() {
   const router = useRouter();
   const shareholderId = params.id;
 
-  const { shareholders, fetchShareholders } = useShareholderStore();
+  const { shareholders, fetchShareholderById } = useShareholderStore();
   const { shares, fetchShares } = useShareStore();
   const [showAddShare, setShowAddShare] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (shareholders.length === 0) {
-      fetchShareholders();
-    }
-    fetchShares(shareholderId);
+    const loadData = async () => {
+      // Always try to find in store first
+      const existing = shareholders.find((s) => s.id === shareholderId);
+
+      if (!existing) {
+        await fetchShareholderById(shareholderId);
+      }
+
+      await fetchShares(shareholderId);
+      setLoading(false);
+    };
+
+    loadData();
   }, [shareholderId]);
 
   const shareholder = shareholders.find((sh) => sh.id === shareholderId);
@@ -44,6 +54,16 @@ export default function ShareholderDetailPage() {
     setShowAddShare(false);
     fetchShares(shareholderId);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center dark:bg-gray-950">
+        <div className="text-gray-500 dark:text-gray-400">
+          Loading shareholder details...
+        </div>
+      </div>
+    );
+  }
 
   if (!shareholder) {
     return (

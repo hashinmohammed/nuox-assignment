@@ -104,6 +104,36 @@ export const useShareholderStore = create((set, get) => ({
     }
   },
 
+  fetchShareholderById: async (id) => {
+    set({ loading: true, error: null });
+    try {
+      const response = await fetch(`/api/shareholders/${id}`);
+      if (!response.ok) throw new Error("Failed to fetch shareholder details");
+      const data = await response.json();
+
+      // Update local state if needed, or just return the data
+      // We'll update the list if the item exists, or add it if it's missing but valid
+      set((state) => {
+        const index = state.shareholders.findIndex((s) => s.id === id);
+        if (index >= 0) {
+          const newShareholders = [...state.shareholders];
+          newShareholders[index] = data.shareholder;
+          return { shareholders: newShareholders, loading: false };
+        } else {
+          return {
+            shareholders: [...state.shareholders, data.shareholder],
+            loading: false,
+          };
+        }
+      });
+
+      return data.shareholder;
+    } catch (error) {
+      set({ error: error.message, loading: false });
+      return null;
+    }
+  },
+
   searchByEmail: async (email) => {
     set({ loading: true, error: null });
     try {
